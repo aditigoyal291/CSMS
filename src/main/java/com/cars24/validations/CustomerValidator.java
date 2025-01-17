@@ -4,10 +4,6 @@ import com.cars24.data.req.AddCustomerReq;
 
 public class CustomerValidator {
     public static void validateAddCustomerReq(AddCustomerReq addCustomerReq){
-        //not null
-        //length 3 to 100
-        //throwing exception manually so that after name we dont execute any other thing
-//        addCustomerReq.getName()
         validateCustomerName(addCustomerReq.getName());
 
     }
@@ -32,13 +28,12 @@ public class CustomerValidator {
         if(phone==null) return;
 
         if(phone.length()!=10)  return;
-//        if(name.length()>100) return;
     }
     public static void validateCustomerEmail(String email)
     {
         if(email==null) return;
 
         if(email.length()!=10)  return;
-//        if(name.length()>100) return;
+
     }
 }

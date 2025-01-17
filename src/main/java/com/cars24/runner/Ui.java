@@ -43,7 +43,7 @@ public class Ui {
         CustomerProfileResponse customerProfileResponse=customerService.getCustomerDetails(customerProfileReq);
 
 
-        customerService.getCustomerDetails(customerProfileReq);
+//        customerService.getCustomerDetails(customerProfileReq);
         System.out.println(customerProfileResponse);
     }
 

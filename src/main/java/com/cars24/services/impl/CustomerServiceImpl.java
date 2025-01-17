@@ -7,6 +7,7 @@ import com.cars24.data.req.CustomerProfileReq;
 import com.cars24.data.response.CustomerProfileResponse;
 import com.cars24.services.CustomerService;
 import com.cars24.validations.CustomerValidator;
+import com.cars24.validations.GetCustomerValidator;
 
 public class CustomerServiceImpl implements CustomerService {
 
@@ -29,7 +30,15 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerProfileResponse getCustomerDetails(CustomerProfileReq customerProfileReq) {
-        return customerDao.getCustomerDetails(customerProfileReq);
+        try {
+
+
+            GetCustomerValidator.validateGetCustomerReq(customerProfileReq);
+            return customerDao.getCustomerDetails(customerProfileReq);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 //    public String updateCustomer(AddCustomerReq addCustomerReq)
 //    {
