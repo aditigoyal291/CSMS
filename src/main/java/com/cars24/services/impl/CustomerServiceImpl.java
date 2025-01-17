@@ -4,9 +4,11 @@ import com.cars24.dao.CustomerDao;
 import com.cars24.dao.impl.CustomerDaoImpl;
 import com.cars24.data.req.AddCustomerReq;
 import com.cars24.data.req.CustomerProfileReq;
+import com.cars24.data.req.DelCustomerReq;
 import com.cars24.data.response.CustomerProfileResponse;
 import com.cars24.services.CustomerService;
 import com.cars24.validations.CustomerValidator;
+import com.cars24.validations.DelCustomerValidator;
 import com.cars24.validations.GetCustomerValidator;
 
 public class CustomerServiceImpl implements CustomerService {
@@ -40,9 +42,16 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return null;
     }
-//    public String updateCustomer(AddCustomerReq addCustomerReq)
-//    {
-//        customerDao.updateCustomer(addCustomerReq);
-//        return "";
-//    }
+    public String deleteCustomer(CustomerProfileReq customerProfileReq)
+    {
+        try{
+            DelCustomerValidator.validateDelCustomerReq(customerProfileReq);
+            return customerDao.deleteCustomer(customerProfileReq);
+//            System.out.println("Success");
+        } catch (Exception e) {
+
+            return e.getMessage();
+        }
+
+    }
 }

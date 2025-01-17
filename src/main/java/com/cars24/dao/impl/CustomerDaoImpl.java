@@ -3,8 +3,11 @@ package com.cars24.dao.impl;
 import com.cars24.dao.CustomerDao;
 import com.cars24.data.req.AddCustomerReq;
 import com.cars24.data.req.CustomerProfileReq;
+import com.cars24.data.req.DelCustomerReq;
 import com.cars24.data.response.CustomerProfileResponse;
+import com.cars24.data.response.DelCustomerResponse;
 import com.cars24.util.DbUtil;
+import com.cars24.validations.DelCustomerValidator;
 
 import javax.swing.plaf.nimbus.State;
 import java.sql.*;
@@ -127,5 +130,32 @@ public class CustomerDaoImpl implements CustomerDao {
         }
 
         return null;
+    }
+
+    public String deleteCustomer(CustomerProfileReq customerProfileReq)
+    {
+        String delSQL="DELETE FROM customers WHERE email=? OR phone=?";
+        Connection connection=DbUtil.getConnection();
+        try{
+
+            PreparedStatement preparedStatement=connection.prepareStatement(delSQL);
+            preparedStatement.setString(1,customerProfileReq.getEmail());
+            preparedStatement.setString(2,customerProfileReq.getPhone());
+//            DelCustomerResponse delCustomerResponse=new DelCustomerResponse();
+//            ResultSet resultSet = preparedStatement.executeQuery();
+
+            preparedStatement.executeUpdate();
+
+            return INSERT_SUCCESS_MESSAGE;
+
+        }
+        catch (Exception e)
+        {
+            System.out.println("Please enter valid details!!");
+            e.printStackTrace();
+            return INSERT_ERROR_MESSAGE;
+
+        }
+
     }
 }

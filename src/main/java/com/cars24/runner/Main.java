@@ -12,6 +12,7 @@ public class Main{
             System.out.println("enter choice");
             System.out.println("1. for add user");
             System.out.println("2. for get user");
+            System.out.println("4. for delete user");
             System.out.println("0. for exit");
             int choice=scanner.nextInt();
             switch (choice){
@@ -23,6 +24,7 @@ public class Main{
                 case 3: Ui.updateCustomer();
                 break;
                 case 4: Ui.deleteCustomer();
+                break;
                 case 0:exit=false;
                 break;
 

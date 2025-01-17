@@ -1,7 +1,9 @@
 package com.cars24.runner;
 import com.cars24.data.req.AddCustomerReq;
 import com.cars24.data.req.CustomerProfileReq;
+import com.cars24.data.req.DelCustomerReq;
 import com.cars24.data.response.CustomerProfileResponse;
+import com.cars24.services.CustomerService;
 import com.cars24.services.impl.CustomerServiceImpl;
 
 import java.sql.SQLOutput;
@@ -57,11 +59,18 @@ public class Ui {
     }
     public static void deleteCustomer()
     {
-        System.out.println("Search customer details");
+        CustomerProfileReq customerProfileReq=new CustomerProfileReq();
+        CustomerServiceImpl customerService=new CustomerServiceImpl();
+        System.out.print("enter your email: ");
+        customerProfileReq.setEmail(scanner.next());
+        System.out.print("Enter your phone: ");
+        customerProfileReq.setPhone(scanner.next());
+        String returnMsg = customerService.deleteCustomer(customerProfileReq);
+        System.out.println(returnMsg);
 
-        System.out.println("Enter Email  : ");
 
-        System.out.println("Enter Phone  : ");
+
+
     }
 
 }
