@@ -1,7 +1,10 @@
 package com.cars24.runner;
 import com.cars24.data.req.AddCustomerReq;
+import com.cars24.data.req.CustomerProfileReq;
+import com.cars24.data.response.CustomerProfileResponse;
 import com.cars24.services.impl.CustomerServiceImpl;
 
+import java.sql.SQLOutput;
 import java.util.*;
 public class Ui {
 
@@ -30,11 +33,18 @@ public class Ui {
 
     public static void getCustomer()
     {
-        System.out.println("Search customer details");
+        CustomerServiceImpl customerService=new CustomerServiceImpl();
+        CustomerProfileReq customerProfileReq=new CustomerProfileReq();
+        System.out.print("Enter the email: ");
+        customerProfileReq.setEmail(scanner.next());
+        System.out.print("Enter the phone number: ");
+        customerProfileReq.setPhone(scanner.next());
 
-        System.out.println("Enter Email  : ");
+        CustomerProfileResponse customerProfileResponse=customerService.getCustomerDetails(customerProfileReq);
 
-        System.out.println("Enter Phone  : ");
+
+        customerService.getCustomerDetails(customerProfileReq);
+        System.out.println(customerProfileResponse);
     }
 
     public static void updateCustomer()
